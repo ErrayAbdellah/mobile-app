@@ -6,5 +6,5 @@ import retrofit2.http.GET
 
 interface QuizApi {
     @GET("quiz")
-    fun getQuiz() :Response<List<Quiz>>
+    suspend fun getQuiz() :Response<List<Quiz>>
 }

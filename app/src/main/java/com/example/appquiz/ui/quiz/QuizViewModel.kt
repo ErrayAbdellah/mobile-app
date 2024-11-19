@@ -17,17 +17,20 @@ class QuizViewModel(private val getQuizQuestionsUseCase: GetQuizQuestionsUseCase
     public val error: LiveData<String> get() = _error
 
     fun loadQuizQuestion(){
-        Log.d("QuizViewModel", "loadQuizQuestion called") // Debug log
         viewModelScope.launch {
-            val result = getQuizQuestionsUseCase()
-            if (result != null) {
-                Log.d("QuizViewModel", "Questions fetched: $result") // Debug log
-                _question.postValue(result)
-            } else {
-                Log.d("QuizViewModel", "Failed to fetch questions") // Debug log
-                _error.postValue("Failed to load quiz questions")
+            try {
+                val result = getQuizQuestionsUseCase()
+                if (!result.isNullOrEmpty()) {
+                    _question.postValue(result)
+                } else {
+                    _error.postValue("No quiz questions found.")
+                }
+            } catch (e: Exception) {
+                Log.e("QuizViewModel", "Error fetching questions", e)
+                _error.postValue("An error occurred: ${e.message}")
             }
         }
+
     }
 
 }
