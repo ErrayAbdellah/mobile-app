@@ -7,7 +7,6 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.appquiz.R
 import com.example.appquiz.adapter.QuizAdapter
 import com.example.appquiz.databinding.ActivityQuizBinding
 import com.example.appquiz.data.repository.QuizRepository
